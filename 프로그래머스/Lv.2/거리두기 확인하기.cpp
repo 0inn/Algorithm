@@ -57,15 +57,20 @@ vector<int> solution(vector<vector<string>> places) {
         for (int i=0; i<5; i++) {
             for (int j=0; j<5; j++) {
                 if (place[i][j] == 'P') {   // P인 경우 bfs 탐색
-                    if (!bfs(i, j)) flag = false;    // 거리두기 실패하면 flag 바꿈
-                    break;
+                    if (!bfs(i, j)) {
+                        flag = false;
+                    } // 거리두기 실패하면 flag 바꿈
                 }
             }
             if (!flag) break;
         }
         
-        if (flag) { answer.push_back(1); }  // 거리두기 성공
-        else { answer.push_back(0); }   // 거리두기 실패
+        if (flag) { // 거리두기 성공
+            answer.push_back(1);
+        }
+        else {  // 거리두기 실패
+            answer.push_back(0);
+        }
     }
     
     
