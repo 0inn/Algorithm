@@ -8,7 +8,6 @@ int m[MAXN];
 int c[MAXN];
 int dp[MAXN][MAXC];
 
-// c의 합을 최소화하여 m 확보
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);
@@ -25,7 +24,7 @@ int main() {
 
 	for (int i = 1; i <= N; i++) {
 		for (int j = 0; j <= C; j++) {
-			if (j >= c[i]) {	// m[i] 더할 수 있음
+			if (j >= c[i]) {	
 				dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - c[i]] + m[i]);
 			}
 			else {

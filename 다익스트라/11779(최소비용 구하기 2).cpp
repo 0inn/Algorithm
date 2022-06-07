@@ -18,7 +18,7 @@ int dist[MAX];
 int route[MAX];
 bool check[MAX];
 
-int main() {	// 최소 비용 + 최소 개수 + 경로 출력
+int main() {	
 	ios_base::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
 

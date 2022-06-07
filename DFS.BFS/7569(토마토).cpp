@@ -12,7 +12,6 @@ int dx[6] = { -1,0,1,0,0,0 };
 int dy[6] = { 0,-1,0,1,0,0 };
 int dz[6] = { 0,0,0,0,-1,1 };
 
-// 익음(1) 안익음(0) 없음(-1)
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
@@ -37,7 +36,7 @@ int main() {
 			int ny = cur.y + dy[dir];
 			int nz = cur.z + dz[dir];
 			if (nx < 0 || ny < 0 || nz < 0 || nx >= N || ny >= M || nz >= H) continue;
-			if (dist[nz][nx][ny] >= 0) continue;	// 토마토 안 익은 경우만 아래 계산
+			if (dist[nz][nx][ny] >= 0) continue;
 			dist[nz][nx][ny] = dist[cur.z][cur.x][cur.y] + 1;
 			q.push({ nz,nx,ny });
 		}

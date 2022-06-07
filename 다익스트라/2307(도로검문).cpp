@@ -33,11 +33,10 @@ void dijkstra(int n1, int n2) {
 			int nxt_n = g[cur.n][i].n;
 			int nxt_w = g[cur.n][i].w;
 
-			// n1 - n2에 해당하는 도로 검문
 			if ((cur.n == n1 && nxt_n == n2) || (cur.n == n2 && nxt_n == n1)) continue;
 
 			if (dist[nxt_n] > dist[cur.n] + nxt_w) {
-				if (first) { route[nxt_n] = cur.n; }	// 처음에 최단 경로 저장
+				if (first) { route[nxt_n] = cur.n; }
 				dist[nxt_n] = dist[cur.n] + nxt_w;
 				pq.push(info(nxt_n, dist[nxt_n]));
 			}
@@ -61,7 +60,7 @@ int main() {
 	first = false;
 
 	int tmp = N;
-	while (tmp != 0) {	// 경로 추적
+	while (tmp != 0) {
 		path.push_back(tmp);
 		tmp = route[tmp];
 	}
@@ -69,12 +68,12 @@ int main() {
 	for (int i = path.size() - 1; i > 0; i--) {
 		int n1 = path[i];
 		int n2 = path[i - 1];
-		dijkstra(n1, n2);	// 해당 경로 검문
-		if (dist[N] == INF) {	// 최단 경로 없을 경우 
+		dijkstra(n1, n2);	
+		if (dist[N] == INF) {
 			cout << -1;
 			return 0;
 		}
-		ans = max(ans, dist[N] - before);	// 시간 차이 가장 많이 나는 경우 정답
+		ans = max(ans, dist[N] - before);
 	}
 
 	cout << ans;

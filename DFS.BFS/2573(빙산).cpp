@@ -26,7 +26,6 @@ int main() {
 	int year = 0;
 	while (true) {
 		memset(check, false, sizeof(check));
-		// 빙하 두 덩어리 이상으로 분리되었는지 확인
 		int cnt = 0;
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
@@ -49,17 +48,16 @@ int main() {
 			}
 		}
 
-		if (cnt == 0) {	// 다 녹을 때까지 분리되지 않는 경우
+		if (cnt == 0) {
 			cout << 0;
 			break;
 		}
 
-		if (cnt >= 2) {	// 두 덩이 이상 나눠지는 경우, 최초의 년도 출력
+		if (cnt >= 2) {
 			cout << year;
 			break;
 		}
 
-		// 빙하 녹이는 함수
 		memset(tmp, 0, sizeof(tmp));
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < M; j++) {
@@ -72,7 +70,6 @@ int main() {
 					if (ice[nx][ny] != 0) continue;
 					melt++;
 				}
-				// tmp에 저장하지 않으면 같은 년도 내에서 계속 갱신됨
 				if (ice[i][j] > melt) tmp[i][j] = ice[i][j] - melt;
 			}
 		}

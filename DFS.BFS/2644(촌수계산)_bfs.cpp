@@ -29,7 +29,7 @@ int main() {
 
 	cin >> n >> p1 >> p2 >> m;
 	for (int i = 0, x, y; i < m; i++) {
-		cin >> x >> y;	// x가 y의 부모
+		cin >> x >> y;
 		v[x].push_back(y);
 		v[y].push_back(x);
 	}

@@ -6,7 +6,7 @@ typedef long long ll;
 int N, Q, B;
 ll IDT[MAX * 4];
 
-void add(int n, ll p) {	// 변경이 아닌 "추가"
+void add(int n, ll p) {
 	n += B - 1;
 	IDT[n] += p;
 	while (n /= 2) {
@@ -37,11 +37,11 @@ int main() {
 	for (B = 1; B < N; B *= 2);
 	for (int i = 0, n, p, x, q; i < Q; i++) {
 		cin >> n;
-		if (n == 1) {	// p에 x를 추가
+		if (n == 1) {	
 			cin >> p >> x;
 			add(p, x);
 		}
-		else {	// p부터 q까지의 sum
+		else {
 			cin >> p >> q;
 			cout << lgSum(p, q) << "\n";
 		}

@@ -18,7 +18,7 @@ int dist[810];
 bool check[810];
 
 int dijkstra(int start, int end) {
-	for (int i = 0; i <= N; i++) { // memset은 0이나 -1로 초기화할 때 사용
+	for (int i = 0; i <= N; i++) {
 		dist[i] = INF;
 		check[i] = false;
 	}
@@ -62,8 +62,7 @@ int main() {
 	int path21 = dijkstra(1, n2);
 	int path22 = path12;
 	int path23 = dijkstra(n1, N);
-
-	// INF를 3번 더해줘서 계속 오류 -> 더하기 전에 미리 오류처리
+    
 	if (path11 == -1 || path12 == -1 || path13 == -1 || path21 == -1 || path23 == -1) {
 		cout << -1;
 	}

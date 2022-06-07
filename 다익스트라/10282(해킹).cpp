@@ -30,7 +30,7 @@ int main() {
 			g[i].clear();
 		}
 		for (int i = 0, a, b, s; i < d; i++) {
-			cin >> a >> b >> s;	// b °¨¿°µÇ¸é, sÃÊ ÈÄ aµµ °¨¿°
+			cin >> a >> b >> s;	
 			g[b].push_back(info(a, s));
 		}
 

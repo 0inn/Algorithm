@@ -1,11 +1,6 @@
-/*
-#define INF 987654321 로 설정하기
-bool check[MAX]; 확인
-한 정점에서 모든 정점으로의 최단거리 구할 때 사용
-*/
 #include<bits/stdc++.h>
 #define MAX 1001
-#define INF 987654321	// 이거 문제였다 ,,썅 ,,
+#define INF 987654321
 using namespace std;
 
 struct info {
@@ -13,7 +8,7 @@ struct info {
 	info() {};
 	info(int n, int w) :n(n), w(w) {};
 
-	bool operator<(const info i) const {	// w가 최소인 것부터 pop
+	bool operator<(const info i) const {
 		return w > i.w;
 	}
 };
@@ -43,7 +38,7 @@ int main() {
 	while (!pq.empty()) {	// dijkstra
 		info cur = pq.top();
 		pq.pop();
-		if (check[cur.n]) continue;	// 이미 방문한 경우 건너뜀
+		if (check[cur.n]) continue;
 		check[cur.n] = true;
 		for (int i = 0; i < g[cur.n].size(); i++) {
 			int nxt_n = g[cur.n][i].n;

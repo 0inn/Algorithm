@@ -13,7 +13,7 @@ void initIDT() {
 	}
 }
 
-void update(int n, ll x) {	// n노드의 값을 x로 바꾸기
+void update(int n, ll x) {
 	n += B - 1;
 	IDT[n] = x;
 	while (n /= 2) {
@@ -26,7 +26,7 @@ ll lgMul(int l, int r) {
 	r += B - 1;
 	ll MUL = 1;
 	while (l <= r) {
-		if ((l % 2) == 1) MUL = (IDT[l] * MUL) % MOD;	// 이거 미리 안해줘서 오류
+		if ((l % 2) == 1) MUL = (IDT[l] * MUL) % MOD;
 		if ((r % 2) == 0) MUL = (IDT[r] * MUL) % MOD;
 		l = (l + 1) / 2;
 		r = (r - 1) / 2;
@@ -39,8 +39,8 @@ int main() {
 	cin.tie(0);
 
 	cin >> N >> M >> K;
-	for (B = 1; B < N; B *= 2)	// 첫번째 index 구하기 위함
-		memset(IDT, 1, sizeof(IDT));	// IDT 1로 초기화
+	for (B = 1; B < N; B *= 2)
+		memset(IDT, 1, sizeof(IDT));	
 	for (int i = B; i < B + N; i++) {
 		cin >> IDT[i];
 	}

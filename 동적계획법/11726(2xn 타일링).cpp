@@ -4,7 +4,6 @@ using namespace std;
 int n;
 int dp[1001];
 
-// 길이가 1 증가했을 때의 상황을 생각 !
 int main() {
 	ios_base::sync_with_stdio(0);
 	cin.tie(0);

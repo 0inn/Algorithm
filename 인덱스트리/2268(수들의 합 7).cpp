@@ -37,7 +37,7 @@ int main() {
 		cin >> a >> b >> c;
 		if (a == 1) update(b, c);
 		else {
-			if (b > c) swap(b, c);	// 항상 고려
+			if (b > c) swap(b, c);	
 			cout << lgSum(b, c) << "\n";
 		}
 	}

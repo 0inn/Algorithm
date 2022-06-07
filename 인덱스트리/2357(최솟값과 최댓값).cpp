@@ -9,7 +9,7 @@ ll IDT_min[MAX * 4];
 ll IDT_max[MAX * 4];
 
 void initIDT() {
-	for (int i = B - 1; i > 0; i--) {	// 부모트리 생성하기
+	for (int i = B - 1; i > 0; i--) {
 		IDT_min[i] = min(IDT_min[i * 2], IDT_min[(i * 2) + 1]);
 	}
 	for (int i = B - 1; i > 0; i--) {
@@ -17,7 +17,7 @@ void initIDT() {
 	}
 }
 
-ll lgMin(int l, int r) {	// l ~ r 중 최솟값
+ll lgMin(int l, int r) {
 	l += (B - 1);
 	r += (B - 1);
 	ll Min = INF;
@@ -31,7 +31,7 @@ ll lgMin(int l, int r) {	// l ~ r 중 최솟값
 	return Min;
 }
 
-ll lgMax(int l, int r) {	// l ~ r 중 최솟값
+ll lgMax(int l, int r) {
 	l += (B - 1);
 	r += (B - 1);
 	ll Max = 0;
@@ -50,7 +50,7 @@ int main() {
 	cin.tie(0); cout.tie(0);
 
 	cin >> N >> M;
-	for (B = 1; B < N; B *= 2);	// 첫번째 왼쪽 index 구하기
+	for (B = 1; B < N; B *= 2);
 	for (int i = B, n; i < N + B; i++) {
 		cin >> IDT_min[i];
 		IDT_max[i] = IDT_min[i];
@@ -58,7 +58,7 @@ int main() {
 	initIDT();
 
 	for (int i = 0, a, b; i < M; i++) {
-		cin >> a >> b;	// a ~ b번째 사이 최솟값, 최댓값
+		cin >> a >> b;
 		cout << lgMin(a, b) << " " << lgMax(a, b) << "\n";
 	}
 
