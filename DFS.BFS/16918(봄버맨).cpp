@@ -10,11 +10,9 @@ struct info {
 int R, C, N;
 string str;
 vector<string> bomb;
-int sec[201][201];  // 폭탄 설치한 시간
+queue<info> q;
 int dx[4] = {-1, 1, 0, 0};
 int dy[4] = {0, 0, -1, 1};
-queue<info> q, q2;
-queue<info> q_tmp, q_tmp2;
 
 int main() {
     ios_base::sync_with_stdio(0);
@@ -24,23 +22,27 @@ int main() {
     for (int i = 0; i < R; i++) {
         cin >> str;
         bomb.push_back(str);
-        for (int j = 0; j < C; j++) {
-            if (bomb[i][j] == 'O') sec[i][j] = 0;
-            else sec[i][j] = 2;
-        }
     }
     
-    for (int k = 2; k < N; k++) {
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
-                if (sec[i][j] == k - 2) {
-                    sec[i][j] = k + 1;
-                    for (int dir = 0; dir < 4; dir++) {
-                        int nx = i + dx[dir];
-                        int ny = j + dy[dir];
-                        if (nx < 0 || ny < 0 || nx >= R || ny >= C) continue;
-                        sec[nx][ny] = k + 1;
-                    }
+    for (int k = 2; k <= N; k++) {
+        if (k % 2 == 0) {   // 짝수초: 폭탄 채우기
+            for (int i = 0; i < R; i++) {
+                for (int j = 0; j < C; j++) {
+                    if (bomb[i][j] == 'O') q.push({i, j});
+                    else bomb[i][j] = 'O';
+                }
+            }
+        }
+        else {  // 홀수초: 폭탄 터뜨리기
+            while (!q.empty()) {
+                info cur = q.front();
+                q.pop();
+                bomb[cur.x][cur.y] = '.';
+                for (int dir = 0; dir < 4; dir++) {
+                    int nx = cur.x + dx[dir];
+                    int ny = cur.y + dy[dir];
+                    if (nx < 0 || ny < 0 || nx >= R || ny >= C) continue;
+                    if (bomb[nx][ny] == 'O') bomb[nx][ny] = '.';
                 }
             }
         }
@@ -48,10 +50,10 @@ int main() {
     
     for (int i = 0; i < R; i++) {
         for (int j = 0; j < C; j++) {
-            cout << sec[i][j];
-            //if (sec[i][j] == N) cout << '.';
-            //else cout << 'O';
+            cout << bomb[i][j];
         }
         cout << "\n";
     }
+    
+    return 0;
 }
