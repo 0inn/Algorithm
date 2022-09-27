@@ -8,7 +8,6 @@
 import Foundation
 
 func solution(_ x:Int) -> Bool {
-    
     var num = x % Int(String(x).map { Int(String($0))! }.reduce(0, +))
     
     var ans = num == 0 ? true : false

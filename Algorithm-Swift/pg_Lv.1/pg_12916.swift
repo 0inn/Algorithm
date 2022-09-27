@@ -7,8 +7,7 @@
 
 import Foundation
 
-func solution(_ s:String) -> Bool
-{
+func solution(_ s:String) -> Bool {
     var arr = String(s).map { String($0) }
 
     var p = arr.filter { $0 == "p" || $0 == "P"}

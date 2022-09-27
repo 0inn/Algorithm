@@ -8,7 +8,6 @@
 import Foundation
 
 func solution1(_ n:Int64) -> Int64 {
-    
     var arr = String(n).map { Int(String($0))! }
     arr.sort { return $0 > $1 }
     var ans = Int64(arr.map { String($0) }.joined(separator: ""))
@@ -17,7 +16,6 @@ func solution1(_ n:Int64) -> Int64 {
 }
 
 func solution2(_ n:Int64) -> Int64 {
-    
     return Int64(String(String(n).sorted{ return $0 > $1}))!
 }
 
