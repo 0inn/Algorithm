@@ -4,22 +4,20 @@
 //
 //  Created by 김영인 on 2022/10/07.
 //
+//  타겟 넘버
 
 import Foundation
 
 func solution(_ numbers:[Int], _ target:Int) -> Int {
     var ans = 0
     
-    func dfs(_ idx: Int, _ sum: Int) {
-        if idx == numbers.count {
-            if sum == target {
-                ans += 1
-            }
+    func dfs(_ cnt: Int, _ sum: Int) {
+        if cnt == numbers.count {
+            if sum == target { ans += 1 }
             return
         }
-        
-        dfs(idx + 1, sum + numbers[idx])
-        dfs(idx + 1, sum - numbers[idx])
+        dfs(cnt + 1, sum + numbers[cnt])
+        dfs(cnt + 1, sum - numbers[cnt])
     }
     
     dfs(0, 0)
