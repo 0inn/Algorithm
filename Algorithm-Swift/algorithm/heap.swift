@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Heap {
+struct Heap {
     var items = [Int]()
     
     init(_ val: Int) {
@@ -15,7 +15,7 @@ class Heap {
         items.append(val)
     }
     
-    func percolate_up() {
+    mutating func percolate_up() {
         var i = items.count - 1
         var parent = Int(i / 2)
         while parent > 0 {
@@ -27,12 +27,12 @@ class Heap {
         }
     }
     
-    func insert(_ k: Int) {
+    mutating func insert(_ k: Int) {
         items.append(k)
         percolate_up()
     }
     
-    func percolate_down(idx: Int) {
+    mutating func percolate_down(idx: Int) {
         let left = idx * 2
         let right = idx * 2 + 1
         var biggest = idx
@@ -51,7 +51,7 @@ class Heap {
         }
     }
     
-    func pop() -> Int {
+    mutating func pop() -> Int {
         let popped = items[1]
         items[1] = items[items.count - 1]
         items.removeLast()
@@ -59,13 +59,3 @@ class Heap {
         return popped
     }
 }
-
-// 사용법
-var heap = Heap.init(30)
-heap.insert(20)
-heap.insert(18)
-heap.insert(9)
-heap.insert(6)
-heap.insert(50)
-
-print(heap.items)
