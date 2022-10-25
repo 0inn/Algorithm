@@ -9,11 +9,11 @@ import Foundation
 
 var items = [Int]()
 
-func find(_ element: Int) -> Int {
-    if items[element] == element {
-        return element
+func find(_ element: Int) -> Int{
+    if items[element] != element {
+        items[element] = find(items[element])
     }
-    return find(items[element])
+    return items[element]
 }
 
 func union(_ first: Int, _ second: Int) {
