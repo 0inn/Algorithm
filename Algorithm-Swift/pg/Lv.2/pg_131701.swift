@@ -9,30 +9,17 @@
 import Foundation
 
 func solution(_ elements:[Int]) -> Int {
-    var arr = elements
+    var arr = elements + elements
+    let len = elements.count
     var ans = Set<Int>()
-    var tmp = elements.first! + elements.last!
+    var sum = 0
     
-    ans.insert(arr[0])
-    for i in 1..<arr.count {
-        arr[i] += arr[i-1]
-        ans.insert(arr[i])
-        for j in stride(from: i - 1, through: 0, by: -1) {
-            ans.insert(arr[i] - arr[j])
+    for i in 0..<len {
+        sum = 0
+        for j in 0..<len {
+            sum += arr[i + j]
+            ans.insert(sum)
         }
-    }
-    
-    ans.insert(tmp)
-    for i in 1..<arr.count-1 {
-        arr[i] -= arr[0]
-        ans.insert(tmp + arr[i])
-    }
-    
-    arr = elements
-    ans.insert(tmp + arr[arr.count - 2])
-    for i in stride(from: arr.count - 3, to: 0, by: -1) {
-        arr[i] += arr[i + 1]
-        ans.insert(tmp + arr[i])
     }
     
     return ans.count
