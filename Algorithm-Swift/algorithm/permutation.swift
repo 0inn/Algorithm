@@ -21,7 +21,7 @@ func permutation<T: Comparable>(_ arr: [[T]], _ n: Int) -> [[T]] {
         for i in 0..<arr.count {
             if visit[i] { continue }
             visit[i] = true
-            cycle(now)
+            cycle(now + [arr[i]])
             visit[i] = false
         }
     }

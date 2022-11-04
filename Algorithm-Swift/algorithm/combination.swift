@@ -17,7 +17,7 @@ func combinatioin<T: Comparable>(_ arr: [T], _ n: Int) -> [[T]] {
             return
         }
         for i in idx..<arr.count {
-            cycle(i + 1, now + arr[i])
+            cycle(i + 1, now + [arr[i]])
         }
     }
     
