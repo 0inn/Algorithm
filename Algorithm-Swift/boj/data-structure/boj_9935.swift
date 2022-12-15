@@ -7,34 +7,21 @@
 
 import Foundation
 
-var strs = Array(String(readLine()!))
-var bombs = Array(String(readLine()!))
+var strs = String(readLine()!)
+var bombs = String(readLine()!)
 let bombsCnt = bombs.count
-var stack: [String] = []
+var ans = ""
 
 for str in strs {
-    stack.append(String(str))
+    ans += String(str)
     
-    let len = stack.count
-    var isBomb = true
-    
-    if len < bombsCnt { continue }
-    
-    for idx in 0..<bombsCnt {
-        if String(bombs[idx]) != String(stack[len - (bombsCnt - idx)]) {
-            isBomb = false
-        }
-    }
-    
-    if isBomb {
-        for _ in 0..<bombsCnt {
-            stack.removeLast()
-        }
+    if ans.hasSuffix(bombs) {
+        ans.removeLast(bombsCnt)
     }
 }
 
-if stack.isEmpty {
+if ans.isEmpty {
     print("FRULA")
 } else {
-    print(stack.joined())
+    print(ans)
 }
