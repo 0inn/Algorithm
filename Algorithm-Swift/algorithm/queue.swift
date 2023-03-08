@@ -8,25 +8,24 @@
 import Foundation
 
 struct Queue<T> {
-    private var queue = [T]()
-    
-    public var count: Int {
-        return queue.count
+    private var inbox: [T] = []
+    private var outbox: [T] = []
+
+    var isEmpty: Bool {
+        return inbox.isEmpty && outbox.isEmpty
+    }
+
+    mutating func enqueue(_ input: T) {
+        inbox.append(input)
     }
     
-    public var isEmpty: Bool {
-        return queue.isEmpty
-    }
-    
-    public mutating func enqueue(_ element: T) {
-        queue.append(element)
-    }
-    
-    public mutating func dequeue() -> T? {
-        return isEmpty ? nil : queue.removeFirst()
-    }
-    
-    public var front: T? {
-        return queue.first
+    // O(1) time
+    @discardableResult
+    mutating func dequeue() -> T? {
+        if outbox.isEmpty {
+            outbox = inbox.reversed()
+            inbox.removeAll()
+        }
+        return outbox.popLast()
     }
 }
