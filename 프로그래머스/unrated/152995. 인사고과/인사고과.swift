@@ -1,52 +1,23 @@
 import Foundation
 
 func solution(_ scores:[[Int]]) -> Int {
-    var arr: [[Int]] = []
+    let wanho = scores[0]
+    var ans = 1
+    var maxScore = 0
     
-    if scores.count == 1 {
-        return 1
-    }
+    let scores = scores.sorted { $0[0] == $1[0] ? $0[1] < $1[1] : $0[0] > $1[0] }
     
-    for i in scores.indices {
-        let first = scores[i][0]
-        let second = scores[i][1]
-        let score = [i, first, second, first+second]
-        arr.append(score)
-    }
-    
-    arr.sort { $0[1] == $1[1] ? $0[2] < $1[2] : $0[1] > $1[1] }
-    
-    var max = arr[0][2]
-    var ansArr: [[Int]] = [arr[0]]
-    for i in 1..<arr.count {
-        if arr[i][2] >= max {
-            max = arr[i][2]
-            ansArr.append(arr[i])
-        } else {
-            if arr[i][0] == 0 {
+    for score in scores {
+        if score[1] < maxScore { // 인센티브 받지 못함
+            if score == wanho {
                 return -1
             }
-        }
-    }
-    
-    ansArr.sort { $0[3] > $1[3] }
-        
-    if ansArr[0][0] == 0 {
-        return 1
-    }
-    
-    var ans = 1
-    var person = 1
-    for i in 1..<ansArr.count {
-        if ansArr[i-1][3] == ansArr[i][3] { 
-            person += 1
         } else {
-            ans += person
-            person = 1
-        }
-        
-        if ansArr[i][0] == 0 {
-            break
+            maxScore = max(score[1], maxScore) // 동료 평가 점수 최대값으로 갱신
+            
+            if score.reduce(0, +) > wanho.reduce(0, +) { // 완호보다 점수 높은 사람이 있다면 등수 갱신
+                ans += 1
+            }
         }
     }
     

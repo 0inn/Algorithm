@@ -1,10 +1,10 @@
 # [unrated] 인사고과 - 152995 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/152995) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/152995?language=swift) 
 
 ### 성능 요약
 
-메모리: 44.9 MB, 시간: 414.26 ms
+메모리: 43.3 MB, 시간: 458.62 ms
 
 ### 구분
 
