@@ -7,16 +7,29 @@
 
 import Foundation
 
-struct Heap<T: Comparable> {
-    private var nodes: [T] = []
+struct Heap<T> {
+    var nodes: [T] = []
+    var sortedNodes: [T] = []
     private let sort: (T, T) -> Bool
     
     init(sort: @escaping (T, T) -> Bool) {
         self.sort = sort
     }
     
+    init(array: [T], sort: @escaping (T, T) -> Bool) {
+        self.sort = sort
+        configureHeap(from: array)
+    }
+    
     var isEmpty: Bool {
         nodes.isEmpty
+    }
+    
+    mutating func configureHeap(from array: [T]) {
+        let nodes = array
+        for node in nodes {
+            insert(node)
+        }
     }
     
     mutating func insert(_ element: T) {
