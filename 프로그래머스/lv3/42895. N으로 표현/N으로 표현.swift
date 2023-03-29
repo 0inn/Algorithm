@@ -15,11 +15,18 @@ func cal(_ x: Int, _ cnt: Int) {
     
     var N = 0
     for i in 0..<8 {
+        let nxtCnt = cnt + 1 + i
+        if ans < nxtCnt {
+            break
+        }
+        if nxtCnt > 8 {
+            break
+        }
         N = (10 * N) + n
-        cal(x + N, cnt + 1 + i)
-        cal(x / N, cnt + 1 + i)
-        cal(x * N, cnt + 1 + i)
-        cal(x - N, cnt + 1 + i)
+        cal(x + N, nxtCnt)
+        cal(x / N, nxtCnt)
+        cal(x * N, nxtCnt)
+        cal(x - N, nxtCnt)
     }
 }
 
