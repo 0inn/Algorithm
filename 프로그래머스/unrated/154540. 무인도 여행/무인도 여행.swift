@@ -14,9 +14,12 @@ func solution(_ maps:[String]) -> [Int] {
     func bfs(_ x: Int, _ y: Int) {
         q.append((x, y))
         visited[x][y] = true
+        var front = 0
         
-        while !q.isEmpty {
-            var (curx, cury) = q.removeFirst()
+        while front < q.count {
+            var (curx, cury) = q[front]
+            front += 1
+            
             for dir in 0..<4 {
                 let nx = curx + dx[dir]
                 let ny = cury + dy[dir]
