@@ -20,8 +20,8 @@ for _ in 0..<N {
 
 houses.sort()
 
-var low = 1
-var high = houses.last!
+var low = 0
+var high = houses.last! + 1
 
 func check(_ mid: Int) -> Bool {
     var cnt = 1
@@ -38,15 +38,14 @@ func check(_ mid: Int) -> Bool {
     return cnt >= C
 }
 
-while low <= high {
+while low + 1 < high {
     let mid = (low + high) / 2
     
     if check(mid) {
-        ans = max(ans, mid)
-        low = mid + 1
+        low = mid
     } else {
-        high = mid - 1
+        high = mid
     }
 }
 
-print(ans)
+print(low)
