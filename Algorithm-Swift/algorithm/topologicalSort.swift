@@ -20,13 +20,7 @@ func topologicalSort() {
         if inDegree[idx] == 0 { queue.append(idx) }
     }
     
-    // 정렬이 완전히 수행되려면 n개 노드 방문
-    for _ in 1...n {
-        // 정렬 과정에서 큐가 비면 사이클이 발생한 것
-        if queue.isEmpty {
-            return
-        }
-        
+    while !queue.isEmpty {
         let cur = queue.first!
         queue.removeFirst()
         result.append(cur)
