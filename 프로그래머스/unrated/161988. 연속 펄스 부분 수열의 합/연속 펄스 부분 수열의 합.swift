@@ -2,38 +2,22 @@ import Foundation
 
 func solution(_ sequence:[Int]) -> Int64 {
     var ans: Int64 = -100001
-    var op = 1
-    var arr: [(Int64, Int64)] = []
-    var dp: [(Int64, Int64)] = Array(repeating: (0, 0), count: sequence.count)
+    let len = sequence.count
     
-    for num in sequence {
-        arr.append((Int64(num * op), Int64(num * -op)))
-        op *= -1
-    }
+    let arrP = sequence.enumerated().map { $0.0 % 2 == 0 ? $0.1 : -$0.1 }.map { Int64($0) }
+    let arrM = sequence.enumerated().map { $0.0 % 2 == 0 ? -$0.1 : $0.1 }.map { Int64($0) }
+    var dpP: [Int64] = Array(repeating: 0, count: len)
+    var dpM: [Int64] = Array(repeating: 0, count: len)
     
-    dp[0] = arr[0]
-    ans = max(ans, dp[0].0)
-    ans = max(ans, dp[0].1)
-    for i in 1..<arr.count {
-        dp[i].0 = dp[i-1].0 + arr[i].0
-        dp[i].1 = dp[i-1].1 + arr[i].1
-    }
+    dpP[0] = arrP[0]
+    dpM[0] = arrM[0]
+    ans = max(dpP[0], dpM[0])
     
-    for i in 1..<arr.count {
-        if dp[i-1].0 + arr[i].0 < arr[i].0 { 
-            dp[i].0 = arr[i].0
-        } else {
-            dp[i].0 = dp[i-1].0 + arr[i].0
-        }
-        
-        if dp[i-1].1 + arr[i].1 < arr[i].1 { 
-            dp[i].1 = arr[i].1
-        } else {
-            dp[i].1 = dp[i-1].1 + arr[i].1
-        }
-        
-        ans = max(ans, dp[i].0)
-        ans = max(ans, dp[i].1)
+    for i in 1..<len {
+        dpP[i] = max(arrP[i], dpP[i-1] + arrP[i])
+        dpM[i] = max(arrM[i], dpM[i-1] + arrM[i])
+        ans = max(ans, dpP[i])
+        ans = max(ans, dpM[i])
     }
     
     return ans
