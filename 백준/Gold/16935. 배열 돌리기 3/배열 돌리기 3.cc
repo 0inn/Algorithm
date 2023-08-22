@@ -1,3 +1,10 @@
+//
+//  main.cpp
+//  Algorithm-c++
+//
+//  Created by 김영인 on 2023/08/15.
+//
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -27,10 +34,9 @@ void change_left_right() {
 void rotate_right() {
     for(int i=0; i<M; i++) {
         for(int j=0; j<N; j++) {
-            new_arr[i][j] = arr[N-j-1][i];
+            new_arr[i][N-j-1] = arr[j][i];
         }
     }
-    swap(N, M);
 }
 
 void rotate_left() {
@@ -39,13 +45,12 @@ void rotate_left() {
             new_arr[i][j] = arr[j][M-i-1];
         }
     }
-    swap(N, M);
 }
 
 void cal_five() {
-    int n = N / 2;
-    int m = M / 2;
-
+    int n = N/2;
+    int m = M/2;
+    
     for(int i=0; i<n; i++) {
         for(int j=0; j<m; j++) {
             new_arr[i][j] = arr[i+n][j]; // 1 <- 4
@@ -57,9 +62,9 @@ void cal_five() {
 }
 
 void cal_six() {
-    int n = N / 2;
-    int m = M / 2;
-
+    int n = N/2;
+    int m = M/2;
+    
     for(int i=0; i<n; i++) {
         for(int j=0; j<m; j++) {
             new_arr[i][j] = arr[i][j+m]; // 1 <- 2
@@ -70,22 +75,19 @@ void cal_six() {
     }
 }
 
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-
+void input() {
     cin >> N >> M >> R;
-
+    
     for(int i=0; i<N; i++) {
         for(int j=0; j<M; j++) {
             cin >> arr[i][j];
         }
     }
-
+    
     while(R--) {
         int op;
         cin >> op;
-
+        
         switch(op) {
             case 1:
                 change_up_down();
@@ -95,9 +97,11 @@ int main() {
                 break;
             case 3:
                 rotate_right();
+                swap(N, M);
                 break;
             case 4:
                 rotate_left();
+                swap(N, M);
                 break;
             case 5:
                 cal_five();
@@ -106,16 +110,23 @@ int main() {
                 cal_six();
                 break;
         }
-
         arr = new_arr;
     }
+}
 
+void output() {
     for(int i=0; i<N; i++) {
         for(int j=0; j<M; j++) {
             cout << new_arr[i][j] << " ";
         }
         cout << "\n";
     }
+}
 
-    return 0;
+int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    input();
+    output();
 }
