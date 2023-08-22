@@ -83,6 +83,4 @@ int main() {
     input();
     solution();
     cout << ans;
-    
-    return 0;
 }
