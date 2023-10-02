@@ -1,32 +1,26 @@
 #include <vector>
-#include <algorithm>
+#include <stack>
 
 using namespace std;
 
-vector<int> ans;
+stack<int> st;
 
 vector<int> solution(vector<int> prices) {
-    int len = prices.size()-1;
+    vector<int> ans(prices.size());
+    int len = prices.size();
     
-    for(int i=len; i>=0; i--) {
-        if(i == prices.size()-1) {
-            ans.push_back(0);
-            continue;
-        } else if(i == len-1) {
-            ans.push_back(1);
-            continue;
+    for(int i=0; i<len; i++) {
+        while(!st.empty() && prices[st.top()] > prices[i]) {
+            ans[st.top()] = i-st.top();
+            st.pop();
         }
-        int cnt = 0;
-        for(int j=i+1; j<len; j++) {
-            if(prices[i] > prices[j]) {
-                cnt = (j-i);
-                break;
-            }
-        }
-        cnt = (cnt == 0) ? len-i : cnt;
-        ans.push_back(cnt);
+        st.push(i);
     }
     
-    reverse(ans.begin(), ans.end());
+    while(!st.empty()) {
+        ans[st.top()] = len-st.top()-1;
+        st.pop();
+    }
+    
     return ans;
 }
