@@ -1,95 +1,131 @@
-//
-//  main.cpp
-//  Algorithm-c++
-//
-//  Created by 김영인 on 2023/08/22.
-//
-
-#include <iostream>
-#include <queue>
-
+#include<iostream>
+#include<queue>
+#define x first
+#define y second
+#define MAX 101
 using namespace std;
 
-struct Point {
-    int x, y;
-};
-
-int N;
-char arr[101][101];
-bool check[101][101];
-int ans[2];
-
-int dx[4] = {-1, 1, 0, 0};
-int dy[4] = {0, 0, -1, 1};
-
-void input() {
-    cin >> N;
-    
-    for(int i=0; i<N; i++) {
-        for(int j=0; j<N; j++) {
-            cin >> arr[i][j];
-        }
-    }
-}
-
-void clear_check_arr() {
-    for(int i=0; i<N; i++) {
-        for(int j=0; j<N; j++) {
-            check[i][j] = false;
-        }
-    }
-}
-
-void bfs(int x, int y, bool isColor) {
-    char color = arr[x][y];
-    queue<Point> q;
-    check[x][y] = true;
-    q.push(Point{x, y});
-    
-    while(!q.empty()) {
-        Point cur = q.front();
-        q.pop();
-        
-        for(int dir=0; dir<4; dir++) {
-            int nx = dx[dir] + cur.x;
-            int ny = dy[dir] + cur.y;
-            
-            if(nx < 0 || ny < 0 || nx >= N || ny >= N || check[nx][ny]) continue;
-            
-            if(arr[nx][ny] == color || (!isColor && color != 'B' && arr[nx][ny] != 'B')) {
-                q.push(Point{nx, ny});
-                check[nx][ny] = true;
-            }
-        }
-    }
-}
-
-void cal_color(bool isColor) {
-    int cnt = 0;
-    
-    for(int i=0; i<N; i++) {
-        for(int j=0; j<N; j++) {
-            if(!check[i][j]) {
-                bfs(i, j, isColor);
-                cnt++;
-            }
-        }
-    }
-    
-    ans[isColor ? 0 : 1] = cnt;
-}
-
-void output() {
-    cout << ans[0] << " " << ans[1] << "\n";
-}
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+string color[MAX];
+bool check[MAX][MAX];
+bool check2[MAX][MAX];
 
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    
-    input();
-    cal_color(true);
-    clear_check_arr();
-    cal_color(false);
-    output();
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin >> color[i];
+	}
+
+	int red = 0;
+	int green = 0;
+	int blue = 0;
+	int rg = 0;
+	
+	// 빨강
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (color[i][j] != 'R' || check[i][j])
+				continue;
+			red++;
+			check[i][j] = 1;
+			queue<pair<int, int>> q;
+			q.push({ i, j });
+			while (!q.empty()) {
+				auto cur = q.front();
+				q.pop();
+				for (int dir = 0; dir < 4; dir++) {
+					int nx = cur.x + dx[dir];
+					int ny = cur.y + dy[dir];
+					if (nx < 0 || nx >= n || ny < 0 || ny >= n)
+						continue;
+					if (color[nx][ny] != 'R' || check[nx][ny])
+						continue;
+					check[nx][ny] = 1;
+					q.push({ nx,ny });
+				}
+			}
+		}
+	}
+
+	// 초록
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (color[i][j] != 'G' || check[i][j])
+				continue;
+			green++;
+			check[i][j] = 1;
+			queue<pair<int, int>> q;
+			q.push({ i, j });
+			while (!q.empty()) {
+				auto cur = q.front();
+				q.pop();
+				for (int dir = 0; dir < 4; dir++) {
+					int nx = cur.x + dx[dir];
+					int ny = cur.y + dy[dir];
+					if (nx < 0 || nx >= n || ny < 0 || ny >= n)
+						continue;
+					if (color[nx][ny] != 'G' || check[nx][ny])
+						continue;
+					check[nx][ny] = 1;
+					q.push({ nx,ny });
+				}
+			}
+		}
+	}
+
+	// 파랑
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (color[i][j] != 'B' || check[i][j])
+				continue;
+			blue++;
+			check[i][j] = 1;
+			queue<pair<int, int>> q;
+			q.push({ i, j });
+			while (!q.empty()) {
+				auto cur = q.front();
+				q.pop();
+				for (int dir = 0; dir < 4; dir++) {
+					int nx = cur.x + dx[dir];
+					int ny = cur.y + dy[dir];
+					if (nx < 0 || nx >= n || ny < 0 || ny >= n)
+						continue;
+					if (color[nx][ny] != 'B' || check[nx][ny])
+						continue;
+					check[nx][ny] = 1;
+					q.push({ nx,ny });
+				}
+			}
+		}
+	}
+
+	// 빨+초
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (color[i][j] == 'B' || check2[i][j])
+				continue;
+			rg++;
+			check2[i][j] = 1;
+			queue<pair<int, int>> q;
+			q.push({ i, j });
+			while (!q.empty()) {
+				auto cur = q.front();
+				q.pop();
+				for (int dir = 0; dir < 4; dir++) {
+					int nx = cur.x + dx[dir];
+					int ny = cur.y + dy[dir];
+					if (nx < 0 || nx >= n || ny < 0 || ny >= n)
+						continue;
+					if (color[nx][ny] == 'B' || check2[nx][ny])
+						continue;
+					check2[nx][ny] = 1;
+					q.push({ nx,ny });
+				}
+			}
+		}
+	}
+
+	cout << red + green + blue << " " << rg + blue;
 }
