@@ -1,81 +1,73 @@
 //
-//  main.cpp
+//  연습.cpp
 //  Algorithm-c++
 //
-//  Created by 김영인 on 2023/11/22.
+//  Created by 김영인 on 6/13/24.
 //
 
 #include <iostream>
 #include <queue>
 #include <algorithm>
-#define MAX 501
 
 using namespace std;
 
-struct point {
+struct Pos {
     int x, y;
 };
 
-int n, m, cnt, width;
-int arr[MAX][MAX];
-bool check[MAX][MAX];
+int n, m;
+int board[501][501];
+bool visited[501][501];
+int dx[4] = {-1, 1, 0, 0};
+int dy[4] = {0, 0, -1, 1};
 
-int dx[4] = {0, 0, -1, 1};
-int dy[4] = {-1, 1, 0, 0};
-
-void input() {
-    cin >> n >> m;
+int bfs(Pos pos) {
+    queue<Pos> q;
+    q.push(pos);
+    visited[pos.x][pos.y] = true;
     
-    for(int i=0; i<n; i++) {
-        for(int j=0; j<m; j++) {
-            cin >> arr[i][j];
-        }
-    }
-}
-
-void bfs(point p) {
-    queue<point> q;
-    q.push({p});
-    check[p.x][p.y] = true;
+    int wid = 1;
     
-    int cur_width = 0;
     while(!q.empty()) {
-        point cur = q.front();
+        Pos cur = q.front();
         q.pop();
-        cur_width++;
         
-        for(int dir=0; dir<4; dir++) {
-            int nx = cur.x + dx[dir];
-            int ny = cur.y + dy[dir];
+        for(int i=0; i<4; i++) {
+            int nx = cur.x+dx[i];
+            int ny = cur.y+dy[i];
             
-            if(nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
-            if(check[nx][ny] || arr[nx][ny] == 0) continue;
+            if(nx<0 || ny<0 || nx>= n || ny >= m) continue;
+            if(visited[nx][ny] || board[nx][ny] == 0) continue;
             
-            q.push(point{nx, ny});
-            check[nx][ny] = true;
+            q.push(Pos{nx, ny});
+            visited[nx][ny] = true;
+            wid++;
         }
     }
     
-    width = max(width, cur_width);
-}
-
-void find_pictures() {
-    for(int i=0; i<n; i++) {
-        for(int j=0; j<m; j++) {
-            if(check[i][j]) continue;
-            if(arr[i][j] == 1) {
-                bfs(point{i, j});
-                cnt++;
-            }
-        }
-    }
+    return wid;
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     
-    input();
-    find_pictures();
-    cout << cnt << "\n" << width;
+    cin >> n >> m;
+    
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<m; j++) {
+            cin >> board[i][j];
+        }
+    }
+    
+    int cnt = 0, maxWid = 0;
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<m; j++) {
+            if(visited[i][j] || board[i][j] == 0) continue;
+            maxWid = max(maxWid, bfs(Pos{i, j}));
+            cnt++;
+        }
+    }
+    
+    cout << cnt << "\n" << maxWid;
 }
