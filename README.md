@@ -31,4 +31,13 @@
 |  |
 | ------- |
 | [0274-h-index](https://github.com/0inn/Algorithm/tree/master/0274-h-index) |
+| [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
+## Hash Table
+|  |
+| ------- |
+| [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
+## String
+|  |
+| ------- |
+| [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
 <!---LeetCode Topics End-->
