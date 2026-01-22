@@ -39,6 +39,7 @@
 ## String
 |  |
 | ------- |
+| [0020-valid-parentheses](https://github.com/0inn/Algorithm/tree/master/0020-valid-parentheses) |
 | [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
 ## Tree
 |  |
@@ -56,4 +57,8 @@
 |  |
 | ------- |
 | [0100-same-tree](https://github.com/0inn/Algorithm/tree/master/0100-same-tree) |
+## Stack
+|  |
+| ------- |
+| [0020-valid-parentheses](https://github.com/0inn/Algorithm/tree/master/0020-valid-parentheses) |
 <!---LeetCode Topics End-->
