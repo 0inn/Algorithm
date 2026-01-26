@@ -40,6 +40,7 @@
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/0inn/Algorithm/tree/master/0020-valid-parentheses) |
+| [0125-valid-palindrome](https://github.com/0inn/Algorithm/tree/master/0125-valid-palindrome) |
 | [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
 ## Tree
 |  |
@@ -65,4 +66,8 @@
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/0inn/Algorithm/tree/master/0020-valid-parentheses) |
+## Two Pointers
+|  |
+| ------- |
+| [0125-valid-palindrome](https://github.com/0inn/Algorithm/tree/master/0125-valid-palindrome) |
 <!---LeetCode Topics End-->
