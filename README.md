@@ -35,12 +35,14 @@
 ## Hash Table
 |  |
 | ------- |
+| [0205-isomorphic-strings](https://github.com/0inn/Algorithm/tree/master/0205-isomorphic-strings) |
 | [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
 ## String
 |  |
 | ------- |
 | [0020-valid-parentheses](https://github.com/0inn/Algorithm/tree/master/0020-valid-parentheses) |
 | [0125-valid-palindrome](https://github.com/0inn/Algorithm/tree/master/0125-valid-palindrome) |
+| [0205-isomorphic-strings](https://github.com/0inn/Algorithm/tree/master/0205-isomorphic-strings) |
 | [0383-ransom-note](https://github.com/0inn/Algorithm/tree/master/0383-ransom-note) |
 ## Tree
 |  |
