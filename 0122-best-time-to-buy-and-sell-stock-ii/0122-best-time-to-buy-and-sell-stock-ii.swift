@@ -1,16 +1,9 @@
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        var minP = prices[0]
-        var maxP = 0
-
-        for price in prices {
-            minP = min(minP, price)
-            if maxP < maxP + (price-minP) {
-                maxP += (price-minP)
-                minP = price
-            }
+        var ans = 0
+        for i in 1..<prices.count {
+            ans += max(0, prices[i] - prices[i-1])
         }
-
-        return maxP
+        return ans
     }
 }
